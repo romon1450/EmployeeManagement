@@ -16,7 +16,7 @@ export interface IEmployeeSalaryAddRequest {
     fromDate: Date | null;
     toDate: Date | null;
     title: string;
-    salary: number;
+    salary: number | null;
 }
 
 export class EmployeeAddRequest implements IEmployeeAddRequest {
@@ -37,5 +37,5 @@ export class EmployeeSalaryAddRequest implements IEmployeeSalaryAddRequest {
     fromDate: Date | null = null;
     toDate: Date | null = null;
     title: string = '';
-    salary: number = 0;
+    salary: number | null = null;
 }
