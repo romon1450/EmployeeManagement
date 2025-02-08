@@ -15,10 +15,17 @@ public class EmployeesController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet]
+    [HttpGet("search")]
     public async Task<ActionResult<IEnumerable<SearchEmployeesQueryResult>>> SearchEmployees([FromQuery] SearchEmployeesQuery query)
     {
-        var employees = await _mediator.Send(query);
-        return Ok(employees);
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("salaries")]
+    public async Task<ActionResult<IEnumerable<GetEmployeeSalariesByTitleQueryResult>>> SearchEmployees()
+    {
+        var result = await _mediator.Send(new GetEmployeeSalariesByTitleQuery());
+        return Ok(result);
     }
 }

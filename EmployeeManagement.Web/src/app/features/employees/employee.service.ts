@@ -14,6 +14,10 @@ export class EmployeeService {
     let params = new HttpParams();
     params = params.set('name', name);
     params = params.set('title', title);
-    return this.http.get(this.employeesApiUrl, { params });
+    return this.http.get(`${this.employeesApiUrl}/search`, { params });
+  }
+
+  getEmployeeSalariesByTitle(): Observable<any> {
+    return this.http.get(`${this.employeesApiUrl}/salaries`);
   }
 }

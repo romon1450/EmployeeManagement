@@ -31,11 +31,12 @@ public class SearchEmployeesQueryHandler : IRequestHandler<SearchEmployeesQuery,
                        JOIN dbo.EmployeeSalary es ON es.EmployeeId = e.Id
                       WHERE (@Name IS NULL OR e.Name LIKE '%' + @Name + '%')
                             AND (@Title IS NULL OR es.Title LIKE '%' + @Title + '%')
-                           AND es.Id = (
+                            AND es.Id = (
 							      SELECT TOP 1 Id
 								    FROM dbo.EmployeeSalary 
 								   WHERE EmployeeId = e.Id
-							    ORDER BY FromDate DESC)";
+							    ORDER BY FromDate DESC)
+                   ORDER BY e.Name";
         }
     }
 }
