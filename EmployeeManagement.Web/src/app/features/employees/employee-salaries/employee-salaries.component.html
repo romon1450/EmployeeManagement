@@ -1,4 +1,5 @@
 <h1 class="title">Employee Salaries</h1>
+<button class="back-button" mat-raised-button routerLink="/home">Go Back</button>
 <div class="salaries-container">
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate" />
     <table mat-table [dataSource]="employeeSalaries" class="mat-elevation-z8">

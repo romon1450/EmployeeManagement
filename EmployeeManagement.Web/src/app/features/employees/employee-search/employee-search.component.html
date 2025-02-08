@@ -9,9 +9,8 @@
             <mat-label>Job Title</mat-label>
             <input matInput [(ngModel)]="title">
         </mat-form-field>
-        <div class="form-buttons">
-            <button mat-raised-button (click)="searchEmployees()">Search</button>
-        </div>
+        <button mat-raised-button (click)="searchEmployees()">Search</button>
+        <button mat-raised-button routerLink="/home">Go Back</button>
     </div>
     <mat-progress-bar *ngIf="isLoading" mode="indeterminate" />
     <table mat-table [dataSource]="employees" class="mat-elevation-z8">
