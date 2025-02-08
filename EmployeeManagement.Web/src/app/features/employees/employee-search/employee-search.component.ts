@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { SharedModule } from '../../../shared.module';
+import { IEmployeeSearchResponse } from '../models/employee-search-response';
 
 @Component({
   selector: 'app-employee-search',
@@ -10,7 +11,7 @@ import { SharedModule } from '../../../shared.module';
   styleUrl: './employee-search.component.scss'
 })
 export class EmployeeSearchComponent implements OnInit {
-  employees: any[] = [];
+  employees: IEmployeeSearchResponse[] = [];
   displayedColumns: string[] = ['name', 'joinDate', 'title', 'salary'];
   isLoading: boolean = false;
   name: string = '';

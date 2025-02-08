@@ -4,7 +4,7 @@ import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
-import { IEmployeeAddDto, EmployeeAddDto } from '../models/employee-add-dto';
+import { IEmployeeAddRequest, EmployeeAddRequest } from '../models/employee-add-request';
 
 @Component({
   selector: 'app-employee-add',
@@ -14,7 +14,7 @@ import { IEmployeeAddDto, EmployeeAddDto } from '../models/employee-add-dto';
   styleUrl: './employee-add.component.scss'
 })
 export class EmployeeAddComponent {
-  employee: IEmployeeAddDto = new EmployeeAddDto();
+  employee: IEmployeeAddRequest = new EmployeeAddRequest();
 
   constructor(private employeeService: EmployeeService, private router: Router) { }
 

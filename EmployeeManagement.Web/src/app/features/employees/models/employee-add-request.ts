@@ -1,4 +1,4 @@
-export interface IEmployeeAddDto {
+export interface IEmployeeAddRequest {
     name: string;
     ssn: string;
     dob: Date | null;
@@ -9,17 +9,17 @@ export interface IEmployeeAddDto {
     phone: string;
     joinDate: Date | null;
     exitDate: Date | null;
-    salary: IEmployeeSalaryAddDto;
+    salary: IEmployeeSalaryAddRequest;
 }
 
-export interface IEmployeeSalaryAddDto {
+export interface IEmployeeSalaryAddRequest {
     fromDate: Date | null;
     toDate: Date | null;
     title: string;
     salary: number;
 }
 
-export class EmployeeAddDto implements IEmployeeAddDto {
+export class EmployeeAddRequest implements IEmployeeAddRequest {
     name: string = '';
     ssn: string = '';
     dob: Date | null = null;
@@ -30,10 +30,10 @@ export class EmployeeAddDto implements IEmployeeAddDto {
     phone: string = '';
     joinDate: Date | null = null;
     exitDate: Date | null = null;
-    salary: IEmployeeSalaryAddDto = new EmployeeSalaryAddDto();
+    salary: IEmployeeSalaryAddRequest = new EmployeeSalaryAddRequest();
 }
 
-export class EmployeeSalaryAddDto implements IEmployeeSalaryAddDto {
+export class EmployeeSalaryAddRequest implements IEmployeeSalaryAddRequest {
     fromDate: Date | null = null;
     toDate: Date | null = null;
     title: string = '';

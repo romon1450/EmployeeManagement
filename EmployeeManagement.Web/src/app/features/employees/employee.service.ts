@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IEmployeeAddRequest } from './models/employee-add-request';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class EmployeeService {
     return this.http.get(`${this.employeesApiUrl}/salaries`);
   }
 
-  addEmployee(employee: any): Observable<any> {
+  addEmployee(employee: IEmployeeAddRequest): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     }); 

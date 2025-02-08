@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { SharedModule } from '../../../shared.module';
+import { IEmployeeSalaryResponse } from '../models/employee-salary-response';
 
 @Component({
   selector: 'app-employee-salaries',
@@ -9,7 +10,7 @@ import { SharedModule } from '../../../shared.module';
   styleUrl: './employee-salaries.component.scss'
 })
 export class EmployeeSalariesComponent implements OnInit {
-  employeeSalaries: any[] = [];
+  employeeSalaries: IEmployeeSalaryResponse[] = [];
   displayedColumns: string[] = ['title', 'maxSalary', 'minSalary'];
   isLoading: boolean = false;
   
