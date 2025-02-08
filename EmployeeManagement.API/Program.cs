@@ -5,6 +5,19 @@ using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var corsPolicy = "CorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsPolicy,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
@@ -16,6 +29,8 @@ builder.Services.AddTransient<IDbConnection>((sp) => new SqlConnection(dbConnect
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly));
 
 var app = builder.Build();
+
+app.UseCors(corsPolicy);
 
 if (app.Environment.IsDevelopment())
 {

@@ -4,7 +4,7 @@ using System.Data;
 
 namespace EmployeeManagement.API.Features.Employees.Queries;
 
-public record SearchEmployeesQuery(string Name, string Title) : IRequest<IEnumerable<SearchEmployeesQueryResult>>;
+public record SearchEmployeesQuery(string? Name, string? Title) : IRequest<IEnumerable<SearchEmployeesQueryResult>>;
 public record SearchEmployeesQueryResult(Guid Id, string Name, DateTime JoinDate, string Title, int Salary);
 
 public class SearchEmployeesQueryHandler : IRequestHandler<SearchEmployeesQuery, IEnumerable<SearchEmployeesQueryResult>>
@@ -29,8 +29,8 @@ public class SearchEmployeesQueryHandler : IRequestHandler<SearchEmployeesQuery,
                             es.Salary
                        FROM dbo.Employee e
                        JOIN dbo.EmployeeSalary es ON es.EmployeeId = e.Id
-                      WHERE (@Name IS NULL OR e.Name LIKE '%@Name%')
-                            AND (@Title IS NULL OR es.Title LIKE '%@Title%')
+                      WHERE (@Name IS NULL OR e.Name LIKE '%' + @Name + '%')
+                            AND (@Title IS NULL OR es.Title LIKE '%' + @Title + '%')
                            AND es.Id = (
 							      SELECT TOP 1 Id
 								    FROM dbo.EmployeeSalary 
