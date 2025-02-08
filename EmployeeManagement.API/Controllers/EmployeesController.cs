@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.API.Features.Employees.Queries;
+﻿using EmployeeManagement.API.Features.Employees.Commands;
+using EmployeeManagement.API.Features.Employees.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,5 +28,12 @@ public class EmployeesController : ControllerBase
     {
         var result = await _mediator.Send(new GetEmployeeSalariesByTitleQuery());
         return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddEmployee(AddEmployeeCommand command)
+    {
+        await _mediator.Send(command);
+        return Created();
     }
 }

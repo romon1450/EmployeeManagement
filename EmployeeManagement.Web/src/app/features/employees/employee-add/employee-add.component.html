@@ -1,0 +1,81 @@
+<h2 class="title">New Employee</h2>
+<div class="employee-form">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="employee.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>SSN</mat-label>
+        <input matInput [(ngModel)]="employee.ssn">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Date of Birth</mat-label>
+        <input matInput [matDatepicker]="dobPicker" [(ngModel)]="employee.dob">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dobPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput [(ngModel)]="employee.address">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput [(ngModel)]="employee.city">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>State</mat-label>
+        <input matInput [(ngModel)]="employee.state">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Zip</mat-label>
+        <input matInput [(ngModel)]="employee.zip">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput [(ngModel)]="employee.phone">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Join Date</mat-label>
+        <input matInput [matDatepicker]="joinDatePicker" [(ngModel)]="employee.joinDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="joinDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #joinDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Exit Date</mat-label>
+        <input matInput [matDatepicker]="exitDatePicker" [(ngModel)]="employee.exitDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="exitDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #exitDatePicker></mat-datepicker>
+    </mat-form-field>
+</div>
+<h2 class="title">Job Title</h2>
+<div class="employee-form">
+    <mat-form-field>
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="fromDatePicker" [(ngModel)]="employee.salary.fromDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #fromDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="toDatePicker" [(ngModel)]="employee.salary.toDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #toDatePicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="employee.salary.title">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Salary</mat-label>
+        <input matInput [(ngModel)]="employee.salary.salary">
+    </mat-form-field>
+</div>
+<div class="form-buttons">
+    <button mat-raised-button (click)="navigateToHome()">Cancel</button>
+    <button mat-raised-button (click)="addEmployee()">Add</button>
+</div>

@@ -20,4 +20,11 @@ export class EmployeeService {
   getEmployeeSalariesByTitle(): Observable<any> {
     return this.http.get(`${this.employeesApiUrl}/salaries`);
   }
+
+  addEmployee(employee: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    }); 
+    return this.http.post(this.employeesApiUrl, employee, {headers: headers});
+  }
 }
