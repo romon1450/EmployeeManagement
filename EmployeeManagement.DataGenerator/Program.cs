@@ -14,19 +14,19 @@ await connection.OpenAsync();
 
 using var transaction = connection.BeginTransaction();
 
-for (var i = 2; i <= 101; i++)
+for (var row = 2; row <= 101; row++)
 {
     var employee = new Employee
     {
         Id = Guid.NewGuid(),
-        Name = workSheet[$"A{i}"].StringValue,
-        SSN = workSheet[$"B{i}"].StringValue,
-        DOB = workSheet[$"C{i}"].DateTimeValue.GetValueOrDefault(),
-        Address = workSheet[$"D{i}"].StringValue,
-        City = workSheet[$"E{i}"].StringValue,
-        State = workSheet[$"F{i}"].StringValue,
-        Zip = workSheet[$"G{i}"].StringValue,
-        Phone = workSheet[$"H{i}"].StringValue
+        Name = workSheet[$"A{row}"].StringValue,
+        SSN = workSheet[$"B{row}"].StringValue,
+        DOB = workSheet[$"C{row}"].DateTimeValue.GetValueOrDefault(),
+        Address = workSheet[$"D{row}"].StringValue,
+        City = workSheet[$"E{row}"].StringValue,
+        State = workSheet[$"F{row}"].StringValue,
+        Zip = workSheet[$"G{row}"].StringValue,
+        Phone = workSheet[$"H{row}"].StringValue
     };
 
     var minJoinDate = employee.DOB.Date.AddYears(22);
@@ -44,7 +44,7 @@ for (var i = 2; i <= 101; i++)
     var salaryCount = hasWorkedOverTenYears ? 3 : 1;
     var salaryFromDate = employee.JoinDate;
 
-    for (var j = 1; j <= salaryCount; j++)
+    for (var i = 1; i <= salaryCount; i++)
     {
         var randomTitle = Constants.Titles[random.Next(0, Constants.Titles.Count - 1)];
         var randomSalary = Constants.Salaries[random.Next(0, Constants.Salaries.Count - 1)];
@@ -58,7 +58,7 @@ for (var i = 2; i <= 101; i++)
             Salary = randomSalary
         };
 
-        if (j == salaryCount)
+        if (i == salaryCount)
         {
             employeeSalary.ToDate = employee.ExitDate;
         }

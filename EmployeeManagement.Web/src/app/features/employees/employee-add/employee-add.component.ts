@@ -26,7 +26,7 @@ export class EmployeeAddComponent {
     this.maxDob.setFullYear(today.getFullYear() - 22);
   }
 
-  addEmployee() {
+  addEmployee(): void {
     if (this.isFormInputValid()) {
       this.snackBar.dismiss();
       this.isAddDisabled = true;
