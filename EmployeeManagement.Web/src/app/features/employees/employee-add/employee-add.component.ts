@@ -44,18 +44,10 @@ export class EmployeeAddComponent {
       this.displayError('Name is missing.');
       return false;
     }
-    if (this.employee.name.length > 200) {
-      this.displayError('Name must not exceed 200 characters.');
-      return false;
-    }
 
     this.employee.ssn = this.employee.ssn.trim();
     if (this.employee.ssn.length == 0) {
       this.displayError('SSN is missing.');
-      return false;
-    }
-    if (this.employee.ssn.length > 50) {
-      this.displayError('SSN must not exceed 50 characters.');
       return false;
     }
 
@@ -69,18 +61,10 @@ export class EmployeeAddComponent {
       this.displayError('Address is missing.');
       return false;
     }
-    if (this.employee.address.length > 400) {
-      this.displayError('Address must not exceed 400 characters.');
-      return false;
-    }
 
     this.employee.city = this.employee.city.trim();
     if (this.employee.city.length == 0) {
       this.displayError('City is missing.');
-      return false;
-    }
-    if (this.employee.city.length > 200) {
-      this.displayError('City must not exceed 200 characters.');
       return false;
     }
 
@@ -89,28 +73,16 @@ export class EmployeeAddComponent {
       this.displayError('State is missing.');
       return false;
     }
-    if (this.employee.state.length > 50) {
-      this.displayError('State must not exceed 50 characters.');
-      return false;
-    }
 
     this.employee.zip = this.employee.zip.trim();
     if (this.employee.zip.length == 0) {
       this.displayError('Zip is missing.');
       return false;
     }
-    if (this.employee.zip.length > 50) {
-      this.displayError('Zip must not exceed 50 characters.');
-      return false;
-    }
 
     this.employee.phone = this.employee.phone.trim();
     if (this.employee.phone.length == 0) {
       this.displayError('Phone is missing.');
-      return false;
-    }
-    if (this.employee.phone.length > 50) {
-      this.displayError('Phone must not exceed 50 characters.');
       return false;
     }
 
@@ -151,10 +123,6 @@ export class EmployeeAddComponent {
     this.employee.salary.title = this.employee.salary.title.trim();
     if (this.employee.salary.title.length == 0) {
       this.displayError('Title is missing.');
-      return false;
-    }
-    if (this.employee.salary.title.length > 400) {
-      this.displayError('Title must not exceed 400 characters.');
       return false;
     }
 
