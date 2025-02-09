@@ -19,11 +19,12 @@ export class EmployeeAddComponent {
   isAddDisabled: boolean = false;
   minDob: Date = new Date();
   maxDob: Date = new Date();
+  minJoinDate: Date = new Date();
+  today: Date = new Date();
 
   constructor(private employeeService: EmployeeService, private router: Router, private snackBar: MatSnackBar) {
-    const today = new Date();
-    this.minDob.setFullYear(today.getFullYear() - 64);
-    this.maxDob.setFullYear(today.getFullYear() - 22);
+    this.minDob.setFullYear(this.today.getFullYear() - 64);
+    this.maxDob.setFullYear(this.today.getFullYear() - 22);
   }
 
   addEmployee(): void {
@@ -90,8 +91,8 @@ export class EmployeeAddComponent {
       this.displayError('Join date is missing.');
       return false;
     }
-    if (this.employee.joinDate < this.employee.dob) {
-      this.displayError('Join date must not be earlier than the date of birth.');
+    if (this.employee.joinDate < this.minJoinDate) {
+      this.displayError(`Join date must not be earlier than ${this.minJoinDate.toDateString()}.`);
       return false;
     }
     
@@ -100,41 +101,21 @@ export class EmployeeAddComponent {
       return false;
     }
 
-    if(this.employee.salary.fromDate == null) {
-      this.displayError('From date is missing.');
-      return false;
-    }
-    if (this.employee.salary.fromDate < this.employee.joinDate) {
-      this.displayError('From date must not be earlier than the join date.');
-      return false;
-    }
-
-    if (this.employee.salary.toDate != null) {
-      if (this.employee.salary.toDate < this.employee.salary.fromDate) {
-        this.displayError('To date must not be earlier than the from date.');
-        return false;
-      }
-      if (this.employee.exitDate != null && this.employee.salary.toDate > this.employee.exitDate) {
-        this.displayError('To date must not be later than the exit date.');
-        return false;
-      }
-    }
-
-    this.employee.salary.title = this.employee.salary.title.trim();
-    if (this.employee.salary.title.length == 0) {
+    this.employee.title = this.employee.title.trim();
+    if (this.employee.title.length == 0) {
       this.displayError('Title is missing.');
       return false;
     }
 
-    if (this.employee.salary.salary == null) {
+    if (this.employee.salary == null) {
       this.displayError('Salary is missing.');
       return false;
     }
-    if (this.employee.salary.salary < 0) {
+    if (this.employee.salary < 0) {
       this.displayError('Salary must not be a negative value.');
       return false;
     }
-    if (this.employee.salary.salary > 2147483647) {
+    if (this.employee.salary > 2147483647) {
       this.displayError('Salary must be less than 2,147,483,647.');
       return false;
     }
@@ -144,5 +125,12 @@ export class EmployeeAddComponent {
   
   displayError(message: string): void {
     this.snackBar.open(`Error: ${message}`, 'Close');
+  }
+
+  setMinJoinDate(): void {
+    if (this.employee.dob != null) {
+      this.minJoinDate = new Date(this.employee.dob);
+      this.minJoinDate.setFullYear(this.employee.dob.getFullYear() + 22);
+    }
   }
 }

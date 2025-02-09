@@ -9,12 +9,6 @@ export interface IEmployeeAddRequest {
     phone: string;
     joinDate: Date | null;
     exitDate: Date | null;
-    salary: IEmployeeSalaryAddRequest;
-}
-
-export interface IEmployeeSalaryAddRequest {
-    fromDate: Date | null;
-    toDate: Date | null;
     title: string;
     salary: number | null;
 }
@@ -30,12 +24,6 @@ export class EmployeeAddRequest implements IEmployeeAddRequest {
     phone: string = '';
     joinDate: Date | null = null;
     exitDate: Date | null = null;
-    salary: IEmployeeSalaryAddRequest = new EmployeeSalaryAddRequest();
-}
-
-export class EmployeeSalaryAddRequest implements IEmployeeSalaryAddRequest {
-    fromDate: Date | null = null;
-    toDate: Date | null = null;
     title: string = '';
     salary: number | null = null;
 }

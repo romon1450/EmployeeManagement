@@ -4,8 +4,7 @@ using MediatR;
 
 namespace EmployeeManagement.API.Features.Employees.Commands;
 
-public record AddEmployeeCommand(string Name, string SSN, DateTime DOB, string Address, string City, string State, string Zip, string Phone, DateTime JoinDate, DateTime? ExitDate, EmployeeSalaryAddDto Salary) : IRequest;
-public record EmployeeSalaryAddDto(DateTime FromDate, DateTime? ToDate, string Title, int Salary);
+public record AddEmployeeCommand(string Name, string SSN, DateTime DOB, string Address, string City, string State, string Zip, string Phone, DateTime JoinDate, DateTime? ExitDate, string Title, int Salary) : IRequest;
 
 public class AddEmployeeCommandHandler : IRequestHandler<AddEmployeeCommand>
 {
@@ -39,10 +38,10 @@ public class AddEmployeeCommandHandler : IRequestHandler<AddEmployeeCommand>
         {
             Id = Guid.NewGuid(),
             EmployeeId = newEmployee.Id,
-            FromDate = request.Salary.FromDate,
-            ToDate = request.Salary.ToDate,
-            Title = request.Salary.Title,
-            Salary = request.Salary.Salary
+            FromDate = request.JoinDate,
+            ToDate = request.ExitDate,
+            Title = request.Title,
+            Salary = request.Salary
         };
 
         _dbContext.EmployeeSalaries.Add(newEmployeeSalary);

@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field>
         <mat-label>Date of Birth</mat-label>
-        <input matInput [matDatepicker]="dobPicker" [min]="minDob" [max]="maxDob" [(ngModel)]="employee.dob">
+        <input matInput [matDatepicker]="dobPicker" [min]="minDob" [max]="maxDob" [(ngModel)]="employee.dob" (dateChange)="setMinJoinDate()">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="dobPicker"></mat-datepicker-toggle>
         <mat-datepicker #dobPicker></mat-datepicker>
@@ -35,44 +35,27 @@
         <mat-label>Phone</mat-label>
         <input matInput [(ngModel)]="employee.phone" maxlength="50">
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field *ngIf="employee.dob != null">
         <mat-label>Join Date</mat-label>
-        <input matInput [matDatepicker]="joinDatePicker" [(ngModel)]="employee.joinDate">
+        <input matInput [matDatepicker]="joinDatePicker" [min]="minJoinDate" [max]="today" [(ngModel)]="employee.joinDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="joinDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #joinDatePicker></mat-datepicker>
     </mat-form-field>
     <mat-form-field *ngIf="employee.joinDate != null">
         <mat-label>Exit Date</mat-label>
-        <input matInput [matDatepicker]="exitDatePicker" [min]="employee.joinDate" [(ngModel)]="employee.exitDate">
+        <input matInput [matDatepicker]="exitDatePicker" [min]="employee.joinDate" [max]="today" [(ngModel)]="employee.exitDate">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="exitDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #exitDatePicker></mat-datepicker>
     </mat-form-field>
-</div>
-<h2 class="title">Job Title</h2>
-<div class="employee-form">
-    <mat-form-field>
-        <mat-label>From Date</mat-label>
-        <input matInput [matDatepicker]="fromDatePicker" [min]="employee.joinDate" [max]="employee.exitDate" [(ngModel)]="employee.salary.fromDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="fromDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #fromDatePicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field *ngIf="employee.salary.fromDate != null">
-        <mat-label>To Date</mat-label>
-        <input matInput [matDatepicker]="toDatePicker" [min]="employee.salary.fromDate" [max]="employee.exitDate" [(ngModel)]="employee.salary.toDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="toDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #toDatePicker></mat-datepicker>
-    </mat-form-field>
     <mat-form-field>
         <mat-label>Title</mat-label>
-        <input matInput [(ngModel)]="employee.salary.title" maxlength="400">
+        <input matInput [(ngModel)]="employee.title" maxlength="400">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Salary</mat-label>
-        <input matInput type="number" [(ngModel)]="employee.salary.salary" [min]="0" [max]="2147483647">
+        <input matInput type="number" [(ngModel)]="employee.salary" [min]="0" [max]="2147483647">
     </mat-form-field>
 </div>
 <div class="form-buttons">
