@@ -24,7 +24,7 @@ public class EmployeesController : ControllerBase
     }
 
     [HttpGet("salaries")]
-    public async Task<ActionResult<IEnumerable<GetEmployeeSalariesByTitleQueryResult>>> SearchEmployees()
+    public async Task<ActionResult<IEnumerable<GetEmployeeSalariesByTitleQueryResult>>> GetEmployeeSalariesByTitle()
     {
         var result = await _mediator.Send(new GetEmployeeSalariesByTitleQuery());
         return Ok(result);

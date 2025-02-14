@@ -32,13 +32,13 @@ for (var row = 2; row <= 101; row++)
     var minJoinDate = employee.DOB.Date.AddYears(22);
     employee.JoinDate = GetRandomDateInBetween(minJoinDate, today);
 
-    await connection.ExecuteAsync(CreateInsertEmployeeSql(), employee, transaction: transaction);
-
-    var shouldSetExitDate = today.Year - employee.JoinDate.Year > 1 && random.Next(0, 1) == 1;
+    var shouldSetExitDate = today.Year - employee.JoinDate.Year > 1 && random.Next(0, 2) == 1;
     if (shouldSetExitDate)
     {
         employee.ExitDate = GetRandomDateInBetween(employee.JoinDate, today);
     }
+
+    await connection.ExecuteAsync(CreateInsertEmployeeSql(), employee, transaction: transaction);
 
     var hasWorkedOverTenYears = (employee.ExitDate?.Date.Year ?? today.Year) - employee.JoinDate.Year > 10;
     var salaryCount = hasWorkedOverTenYears ? 3 : 1;
@@ -46,8 +46,8 @@ for (var row = 2; row <= 101; row++)
 
     for (var i = 1; i <= salaryCount; i++)
     {
-        var randomTitle = Constants.Titles[random.Next(0, Constants.Titles.Count - 1)];
-        var randomSalary = Constants.Salaries[random.Next(0, Constants.Salaries.Count - 1)];
+        var randomTitle = Constants.Titles[random.Next(0, Constants.Titles.Count)];
+        var randomSalary = Constants.Salaries[random.Next(0, Constants.Salaries.Count)];
 
         var employeeSalary = new EmployeeSalary
         {
@@ -77,9 +77,9 @@ workBook.Close();
 
 DateTime GetRandomDateInBetween(DateTime fromDate, DateTime toDate)
 {
-    var year = random.Next(fromDate.Year + 1, today.Year - 1);
-    var month = random.Next(1, 12);
-    var day = random.Next(1, 28);
+    var year = random.Next(fromDate.Year + 1, today.Year);
+    var month = random.Next(1, 13);
+    var day = random.Next(1, 29);
 
     return new DateTime(year, month, day);
 }
